@@ -48,6 +48,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task
-  grunt.registerTask('default', ['shell:bowerInstall', 'jshint']);
+  grunt.registerTask('default', ['shell:bowerInstall', 'sync:arcgis', 'jshint']);
 
 };

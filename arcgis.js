@@ -3,8 +3,6 @@ var request = require('superagent');
 require('superagent-proxy')(request);
 var _ = require('underscore');
 
-
-
 /* FEATURESERVER ============================================================= */
 var FeatureServer = function (fsUrl, fsInfo, options) {
     this.fsUrl = fsUrl;
@@ -18,7 +16,6 @@ module.exports.connectFeatureServer = function (fsUrl, options, callback) {
         callback = options;
     }
 
-    // todo: Обработать fsUrl, достраивая его при необходимости url
     try {
         var req = request
             .get(fsUrl);
@@ -43,7 +40,6 @@ module.exports.connectFeatureServer = function (fsUrl, options, callback) {
                     return callback(new Error('Passed URL seems to be not an Arcgis FeatureServer REST endpoint'));
                 }
 
-                // todo: Сделать более широкую проверку типа слоя
                 if (!(fsInfo.type && fsInfo.type === 'Feature Layer')) {
                     return callback(new Error('Passed URL seems to be not an Arcgis FeatureServer REST endpoint'));
                 }
@@ -55,14 +51,12 @@ module.exports.connectFeatureServer = function (fsUrl, options, callback) {
     }
 };
 
-// http://si-sdiis/arcgis/sdk/rest/index.html#//02ss0000002r000000
 FeatureServer.prototype.query = function (options, callback) {
     var params = _.defaults(options, {
         outFields: '*',
         returnGeometry: false
     });
 
-    // Если в objectIds массив, преобразуем его в строку
     if (_.isArray(params.objectIds)) {
         params.objectIds = params.objectIds.join(', ');
     }
@@ -118,7 +112,6 @@ FeatureServer.prototype.queryCount = function (options, callback) {
     });
 };
 
-// http://si-sdiis/arcgis/sdk/rest/index.html#/Add_Features/02ss0000009m000000/
 FeatureServer.prototype.add = function (features, callback) {
     var req = request
         .post(this.fsUrl + '/addFeatures');
@@ -148,7 +141,6 @@ FeatureServer.prototype.add = function (features, callback) {
             }
 
             if (!!resBody.error) {
-                // todo: error.message содержит больше данных
                 debug('*** arcgis err, full body ***');
                 debug(resBody);
                 debug('*****************************');
@@ -156,7 +148,6 @@ FeatureServer.prototype.add = function (features, callback) {
             }
 
             if (!resBody.addResults) {
-                // todo: error.message содержит больше данных
                 return callback(new Error('Add error.'));
             }
 
@@ -164,7 +155,6 @@ FeatureServer.prototype.add = function (features, callback) {
         });
 };
 
-// http://si-sdiis/arcgis/sdk/rest/index.html#/Delete_Features/02ss0000006z000000/
 FeatureServer.prototype.del = function (options, callback) {
     var params = options;
     params.f = 'json';
@@ -197,7 +187,6 @@ FeatureServer.prototype.del = function (options, callback) {
             }
 
             if (!!resBody.error) {
-                // todo: error.message содержит больше данных
                 debug('*** arcgis err, full body ***');
                 debug(resBody);
                 debug('*****************************');
@@ -205,7 +194,6 @@ FeatureServer.prototype.del = function (options, callback) {
             }
 
             /*if (!resBody.deleteResults) {
-             // todo: error.message содержит больше данных
              return callback(new Error('Delete error.'));
              }*/
 
@@ -220,7 +208,6 @@ FeatureServer.prototype.delete = function (options, callback) {
     this.del(options, callback);
 };
 
-// http://si-sdiis/arcgis/sdk/rest/index.html#/Update_Features/02ss00000096000000/
 FeatureServer.prototype.update = function (features, callback) {
     request
         .post(this.fsUrl + '/updateFeatures')
@@ -244,7 +231,6 @@ FeatureServer.prototype.update = function (features, callback) {
             }
 
             if (!!resBody.error) {
-                // todo: error.message содержит больше данных
                 debug('*** arcgis err, full body ***');
                 debug(resBody);
                 debug('*****************************');
@@ -252,7 +238,6 @@ FeatureServer.prototype.update = function (features, callback) {
             }
 
             if (!resBody.updateResults) {
-                // todo: error.message содержит больше данных
                 return callback(new Error('Update error.'));
             }
 
