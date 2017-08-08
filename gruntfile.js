@@ -26,9 +26,23 @@ module.exports = function(grunt) {
       bowerInstallBuild: {
         command: 'bower install'
       }
+    },
+
+    sync: {
+      arcgis: {
+        cwd: '.',
+        src: [
+          'arcgis.js'
+        ],
+        expand: true,
+        dest: 'node_modules/arcgis-rest-client/lib',
+        verbose: true
+      }
     }
   });
   // end task config
+
+  require('load-grunt-tasks')(grunt);
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
