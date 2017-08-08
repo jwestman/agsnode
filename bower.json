@@ -1,0 +1,26 @@
+{
+  "name": "agsnode",
+  "authors": [
+    "AVWORLD\\jim1852 <jwestman@esri.com>"
+  ],
+  "description": "ArcGIS Node client",
+  "main": "main.js",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "resolutions": {
+    "dijit": "v1.11.2/esri-3.18.0",
+    "dojox": "v1.11.2/esri-3.18.0",
+    "dojo": "v1.11.2/esri-3.18.0"
+  },
+  "dependencies": {
+    "arcgis-js-api": "3.18.0"
+  }
+}

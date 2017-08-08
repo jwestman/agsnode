@@ -1,0 +1,34 @@
+{
+  "name": "agsnode",
+  "version": "1.0.0",
+  "description": "ArcGIS Node client",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JWestman/agsnode.git"
+  },
+  "author": "jim1852",
+  "license": "ISC",
+  "dependencies": {
+    "arcgis-rest-client": "0.0.2",
+    "bluebird": "^3.5.0",
+    "debug": "^1.0.4",
+    "lodash": "^2.4.1",
+    "request": "^2.40.0",
+    "superagent": "^0.18.2",
+    "superagent-proxy": "^1.0.2",
+    "underscore": "^1.6.0",
+    "urlencode": "^0.2.0"
+  },
+  "engines": {
+    "node": ">=0.10.3 <0.12"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-watch": "^1.0.0"
+  }
+}
